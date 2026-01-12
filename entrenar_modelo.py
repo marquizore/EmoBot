@@ -14,7 +14,7 @@ archivo_dataset = os.path.join(ruta_proyecto, "dataset_emociones_completo.csv")
 nombre_modelo = os.path.join(ruta_proyecto, "modelo_emociones_svm.joblib")
 nombre_scaler = os.path.join(ruta_proyecto, "scaler_emociones.joblib")
 
-print(" Cargando dataset para MODO PERFECCIONISTA...")
+print(" Cargando dataset...")
 
 # 1. Cargar
 try:
@@ -46,7 +46,7 @@ print("   (El modelo está buscando patrones muy finos)")
 model = SVC(kernel='rbf', C=100.0, gamma='scale', random_state=42, probability=True, verbose=True)
 model.fit(X_scaled, y)  
 
-print("\n¡Entrenamiento completado!")
+print("\nEntrenamiento completado")
 
 # 5. Evaluación
 print(" Verificando aprendizaje...")
@@ -74,3 +74,4 @@ plt.title(f'Matriz de Confusión - Total {len(data)} Audios')
 plt.ylabel('Verdadera')
 plt.xlabel('Predicha')
 plt.show()
+
