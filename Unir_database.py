@@ -10,16 +10,16 @@ archivo_salida = "dataset_emociones_completo.csv"
 # Lista para almacenar los DataFrames
 lista_de_dataframes = []
 
-print(f"📂 Iniciando unión de archivos desde: {ruta_features}")
+print(f" Iniciando unión de archivos desde: {ruta_features}")
 
 # Obtener lista de archivos CSV
 archivos_csv = [f for f in os.listdir(ruta_features) if f.endswith(".csv")]
 total_archivos = len(archivos_csv)
 
-print(f"📊 Se detectaron {total_archivos} archivos CSV en la carpeta.")
+print(f" Se detectaron {total_archivos} archivos CSV en la carpeta.")
 
 if total_archivos == 0:
-    print("❌ Error: La carpeta 'features' está vacía. Ejecuta primero el script de extracción.")
+    print(" Error: La carpeta 'features' está vacía. Ejecuta primero el script de extracción.")
     exit()
 
 # Recorrer cada archivo
@@ -46,11 +46,11 @@ for i, archivo_csv in enumerate(archivos_csv):
             print(f"   ... procesados {i + 1}/{total_archivos}")
 
     except Exception as e:
-        print(f"   ⚠️ Error leyendo '{archivo_csv}': {e}")
+        print(f"    Error leyendo '{archivo_csv}': {e}")
 
 # --- UNIÓN Y LIMPIEZA FINAL ---
 if lista_de_dataframes:
-    print("\n⏳ Uniendo todos los datos en un solo archivo...")
+    print("\n Uniendo todos los datos en un solo archivo...")
     dataset_completo = pd.concat(lista_de_dataframes, ignore_index=True)
     
     print(f"   Dimensiones iniciales: {dataset_completo.shape}")
@@ -66,12 +66,12 @@ if lista_de_dataframes:
     dataset_limpio.to_csv(archivo_salida, index=False)
     
     print("\n" + "="*40)
-    print(f"🎉 ¡ÉXITO! Dataset guardado en: {archivo_salida}")
-    print(f"📏 Tamaño final: {dataset_limpio.shape[0]} filas x {dataset_limpio.shape[1]} columnas")
+    print(f" Dataset guardado en: {archivo_salida}")
+    print(f"Tamaño final: {dataset_limpio.shape[0]} filas x {dataset_limpio.shape[1]} columnas")
     print("-" * 20)
-    print("📢 RESUMEN POR EMOCIÓN:")
+    print(" RESUMEN POR EMOCIÓN:")
     print(dataset_limpio['emocion'].value_counts())
     print("="*40)
 
 else:
-    print("\n❌ No se pudo generar el dataset (lista vacía).")
+    print("\nNo se pudo generar el dataset (lista vacía).")
