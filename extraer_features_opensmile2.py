@@ -40,12 +40,12 @@ def procesar_audio(args):
 
     if os.path.exists(ruta_csv):
         limpiar_csv_con_pandas(ruta_csv)
-        print(f"✅ {nombre_archivo_unico}")
+        print(f" {nombre_archivo_unico}")
     else:
-        print(f"❌ Falló: {nombre_archivo_unico}")
+        print(f" Falló: {nombre_archivo_unico}")
 
 if __name__ == "__main__":
-    print("🚀 Iniciando búsqueda PROFUNDA de archivos...")
+    print(" Iniciando búsqueda PROFUNDA de archivos...")
     
     tareas = []
     
@@ -72,12 +72,12 @@ if __name__ == "__main__":
                     tareas.append((ruta_completa, emocion, nombre_unico))
 
     total_encontrados = len(tareas)
-    print(f"📂 Se encontraron {total_encontrados} archivos WAV en total (incluyendo subcarpetas).")
+    print(f" Se encontraron {total_encontrados} archivos WAV en total (incluyendo subcarpetas).")
     
     if total_encontrados > 0:
-        print("⚡ Procesando...")
+        print(" Procesando...")
         with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
             executor.map(procesar_audio, tareas)
-        print("🏁 Fin del proceso.")
+        print(" Fin del proceso.")
     else:
-        print("⚠️ No se encontraron archivos .wav. Verifica la ruta.")
+        print(" No se encontraron archivos .wav. Verifica la ruta.")
