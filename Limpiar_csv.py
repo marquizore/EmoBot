@@ -41,10 +41,10 @@ def limpiar_csv(ruta_csv):
         else:
             # Si no hay datos, se podría eliminar el archivo o dejarlo vacío
             os.remove(ruta_csv) 
-            print(f"   ⚠️ No se encontraron datos en {os.path.basename(ruta_csv)}, archivo eliminado.")
+            print(f"   No se encontraron datos en {os.path.basename(ruta_csv)}, archivo eliminado.")
 
     except Exception as e:
-        print(f"   ❌ Error al limpiar el archivo {os.path.basename(ruta_csv)}: {e}")
+        print(f"  Error al limpiar el archivo {os.path.basename(ruta_csv)}: {e}")
 
 
 # --- FUNCIÓN QUE PROCESA UN SOLO ARCHIVO ---
@@ -69,11 +69,11 @@ def procesar_audio(ruta_audio, emocion, archivo):
     subprocess.run(comando, capture_output=True, text=True)
 
     if os.path.exists(ruta_csv):
-        print(f"   ✅ CSV generado: {os.path.basename(ruta_csv)}. Limpiando encabezado...")
+        print(f"  CSV generado: {os.path.basename(ruta_csv)}. Limpiando encabezado...")
         # Llama a la nueva función para limpiar el archivo
         limpiar_csv(ruta_csv)
     else:
-        print(f"   ❌ Error al procesar {archivo}")
+        print(f" Error al procesar {archivo}")
 
 
 # --- 1. RECORRER CARPETAS DE EMOCIONES ---
@@ -86,7 +86,7 @@ emociones = sorted([d for d in os.listdir(ruta_audios) if os.path.isdir(os.path.
 for emocion in emociones:
     carpeta_emocion = os.path.join(ruta_audios, emocion)
     
-    print(f"🎭 Procesando emoción: {emocion}")
+    print(f"Procesando emoción: {emocion}")
 
     # Obtiene la lista de archivos y la ordena
     archivos_wav = sorted([f for f in os.listdir(carpeta_emocion) if f.lower().endswith(".wav")])
